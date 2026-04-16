@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "222629585867",
+    "project_id": "instachamba-3601f",
+    "storage_bucket": "instachamba-3601f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222629585867:android:980951258731426523cc4e",
+        "android_client_info": {
+          "package_name": "com.vivekbansal338.trabajoya_new"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFTt_VpraS77B5mQkPrywMjxSPsV9DfWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

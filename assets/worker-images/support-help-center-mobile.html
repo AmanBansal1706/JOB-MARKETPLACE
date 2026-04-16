@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & Help Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .phone-container {
+            width: 375px;
+            height: 812px;
+            background: #000;
+            border-radius: 40px;
+            padding: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .status-bar {
+            height: 44px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            padding: 20px 24px 30px;
+            color: white;
+        }
+        
+        .header-top {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-title {
+            margin-left: 16px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .search-container {
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            height: 48px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 0 20px 0 50px;
+            color: white;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .content {
+            padding: 24px;
+            height: calc(100% - 142px);
+            overflow-y: auto;
+        }
+        
+        .quick-actions {
+            margin-bottom: 32px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+        
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .action-card {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .action-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+            border-color: #6366f1;
+        }
+        
+        .action-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .action-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+        
+        .action-subtitle {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        
+        .help-sections {
+            margin-bottom: 32px;
+        }
+        
+        .help-item {
+            background: white;
+            border: 1px solid #f3f4f6;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .help-item:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-color: #e5e7eb;
+        }
+        
+        .help-item-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .help-item-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            margin-right: 16px;
+        }
+        
+        .help-item-content {
+            flex: 1;
+        }
+        
+        .help-item-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        
+        .help-item-description {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+        
+        .chevron {
+            color: #d1d5db;
+            transition: transform 0.3s ease;
+        }
+        
+        .help-item:hover .chevron {
+            transform: translateX(2px);
+        }
+        
+        .faq-section {
+            background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .faq-question {
+            padding: 16px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-button {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+        
+        .floating-action {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .floating-action:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
+        }
+        
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 20px;
+            height: 20px;
+            background: #ef4444;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        .ripple-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple-effect::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+        
+        .ripple-effect:active::before {
+            width: 200px;
+            height: 200px;
+        }
+        
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-screen">
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>Support Center</span>
+                <span>100% 🔋</span>
+            </div>
+            
+            <!-- Header -->
+            <div class="header">
+                <div class="header-top">
+                    <button class="back-btn ripple-effect">←</button>
+                    <div class="header-title">Support & Help Center</div>
+                </div>
+                <div class="search-container">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" class="search-input" placeholder="Search for help...">
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="content">
+                <!-- Quick Actions -->
+                <div class="quick-actions animate-fade-in">
+                    <h2 class="section-title">Quick Actions</h2>
+                    <div class="action-grid">
+                        <div class="action-card ripple-effect">
+                            <div class="action-icon">🎫</div>
+                            <div class="action-title">Raise New Ticket</div>
+                            <div class="action-subtitle">Create support request</div>
+                        </div>
+                        <div class="action-card ripple-effect">
+                            <div class="action-icon">📋</div>
+                            <div class="action-title">Track Tickets</div>
+                            <div class="action-subtitle">View ticket progress</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Help Sections -->
+                <div class="help-sections animate-slide-in">
+                    <h2 class="section-title">Browse Help Topics</h2>
+                    
+                    <div class="help-item">
+                        <div class="help-item-header">
+                            <div class="help-item-icon">❓</div>
+                            <div class="help-item-content">
+                                <div class="help-item-title">FAQ Accordion List</div>
+                                <div class="help-item-description">View pre-answered common issues</div>
+                            </div>
+                            <div class="chevron">›</div>
+                        </div>
+                    </div>
+                    
+                    <div class="help-item">
+                        <div class="help-item-header">
+                            <div class="help-item-icon">🏠</div>
+                            <div class="help-item-content">
+                                <div class="help-item-title">Bottom Navigation Menu</div>
+                                <div class="help-item-description">Home, Jobs, Messages, Settings</div>
+                            </div>
+                            <div class="chevron">›</div>
+                        </div>
+                    </div>
+                    
+                    <div class="help-item">
+                        <div class="help-item-header">
+                            <div class="help-item-icon">📄</div>
+                            <div class="help-item-content">
+                                <div class="help-item-title">Support Ticket List</div>
+                                <div class="help-item-description">Upload screenshots or documents</div>
+                            </div>
+                            <div class="chevron">›</div>
+                        </div>
+                    </div>
+                    
+                    <div class="help-item">
+                        <div class="help-item-header">
+                            <div class="help-item-icon">💬</div>
+                            <div class="help-item-content">
+                                <div class="help-item-title">Helpdesk-style Chat</div>
+                                <div class="help-item-description">Tabs for open and closed tickets</div>
+                            </div>
+                            <div class="chevron">›</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ Section -->
+                <div class="faq-section animate-fade-in">
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How do I upload media files?
+                            <span class="chevron">›</span>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            What ticket details are required?
+                            <span class="chevron">›</span>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How to track my support requests?
+                            <span class="chevron">›</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Button -->
+                <button class="contact-button ripple-effect">Contact Support Team</button>
+            </div>
+            
+            <!-- Floating Action Button -->
+            <div class="floating-action">
+                <div class="badge">3</div>
+                💬
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Add interactive behaviors
+        document.querySelectorAll('.help-item, .action-card, .faq-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Add ripple effect
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+                
+                // Simulate navigation
+                console.log('Navigating to:', this.querySelector('.help-item-title, .action-title, .faq-question')?.textContent);
+            });
+        });
+        
+        // Search functionality
+        document.querySelector('.search-input').addEventListener('focus', function() {
+            this.style.background = 'rgba(255,255,255,0.25)';
+        });
+        
+        document.querySelector('.search-input').addEventListener('blur', function() {
+            this.style.background = 'rgba(255,255,255,0.15)';
+        });
+        
+        // Floating action button
+        document.querySelector('.floating-action').addEventListener('click', function() {
+            this.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+            
+            console.log('Opening live chat...');
+        });
+        
+        // Simulate loading animations
+        setTimeout(() => {
+            document.querySelectorAll('.animate-fade-in').forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        }, 100);
+    </script>
+</body>
+</html>
